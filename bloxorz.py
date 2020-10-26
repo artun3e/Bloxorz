@@ -41,7 +41,7 @@ class Bloxorz:
     '''
     def v_right_movable(self):
         if self.is_vertical == True:
-            if self.curr_state[1].y + 2 < self.YSIZE : # block can move right
+            if self.curr_state[1].y + 2 < self.YSIZE and self.puzzle[self.curr_state[0].x,self.curr_state[0].y+1] != 'X' and self.puzzle[self.curr_state[1].x,self.curr_state[1].y+2] != 'X' : # block can move right
                 return True
             else:
                 return False
@@ -53,7 +53,7 @@ class Bloxorz:
     '''
     def v_left_movable(self):
         if self.is_vertical == True:
-            if self.curr_state[1].y-2 >= 0 :
+            if self.curr_state[1].y-2 >= 0 and self.puzzle[self.curr_state[0].x,self.curr_state[0].y-1] != 'X' and self.puzzle[self.curr_state[1].x,self.curr_state[1].y-2] != 'X'  :
                 return True
             else:
                 return False
@@ -66,7 +66,7 @@ class Bloxorz:
     '''
     def v_up_movable(self): 
         if self.is_vertical == True: 
-            if self.curr_state[1].x -2 >= 0:
+            if self.curr_state[1].x -2 >= 0 and self.puzzle[self.curr_state[0].x-1,self.curr_state[0].y] != 'X' and self.puzzle[self.curr_state[1].x-2,self.curr_state[1].y] != 'X':
                 return True
             else:
                 return False
@@ -76,14 +76,15 @@ class Bloxorz:
 
     def v_down_movable(self):
         if self.is_vertical == True:
-            if self.curr_state[1].x+2 < self.XSIZE :
+            if self.curr_state[1].x+2 < self.XSIZE and self.puzzle[self.curr_state[0].x+1,self.curr_state[0].y] != 'X' and self.puzzle[self.curr_state[1].x+2,self.curr_state[1].y] != 'X' :
                 return True
             else:
                 return False
         else:
             return False
 
-    
+    def h_right_movable(self):
+        pass #TODO
 
 
     '''
@@ -99,9 +100,11 @@ class Bloxorz:
     
 
     #Uniform Search Cost Search algorithm for solving the puzzle
+    '''
     def UCS():
-        pass 
+        pass  #TODO
 
     def A_Star():
-        pass
+        pass  #TODO
+    '''
 
