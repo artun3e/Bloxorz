@@ -13,4 +13,8 @@ class Bloxorz:
 
     #Uniform Search Cost Search algorithm for solving the puzzle
     def UCS():
+        pass 
+
+    def A_Star():
+        pass
 
