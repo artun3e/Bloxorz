@@ -124,6 +124,26 @@ class Bloxorz:
         else:
             return False
 
+    '''
+        check if the block is horizontal and can move upwards
+    '''
+    def h_up_movable(self):
+        if self.is_vertical == False:
+            if self.curr_state[0].x == self.curr_state[1].x :
+                if self.curr_state[0].x-1 >= 0 and self.curr_state[1].x-1 >= 0 and self.puzzle[self.curr_state[0].x-1,self.curr_state[0].y] != 'X' and self.puzzle[self.curr_state[1].x-1,self.curr_state[1].y] != 'X' :
+                    return True
+                else : 
+                    return False
+
+            elif self.curr_state[0].y  == self.curr_state[1].y :
+                if self.curr_state[0].x-1 >= 0 and self.curr_state[1].x-2 >= 0 and self.puzzle[self.curr_state[0].x-1,self.curr_state[0].y] != 'X' and self.puzzle[self.curr_state[1].x-2,self.curr_state[1].y] != 'X' : 
+                    return True
+                else :
+                    return False
+        else:
+            return False 
+            
+
 
     '''
         returns true if the blocks current state is the goal state
