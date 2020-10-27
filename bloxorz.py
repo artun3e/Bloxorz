@@ -91,15 +91,35 @@ class Bloxorz:
         if self.is_vertical == False:
             #understand the position of the horizontal block
             if self.curr_state[0].x == self.curr_state[1].x-1:
-                if self.puzzle[self.curr_state[0].x,self.curr_state[0].y+1] != 'X' and self.puzzle[self.curr_state[1].x, self.curr_state[1].y+1] != 'X' :
+                if self.curr_state[0].y+1 < self.YSIZE and self.curr_state[1].y+1 < self.YSIZE and self.puzzle[self.curr_state[0].x,self.curr_state[0].y+1] != 'X' and self.puzzle[self.curr_state[1].x, self.curr_state[1].y+1] != 'X' :
                     return True
                 else :
                     return False
             #no need to check the position but for the sake of readability, let's write
             elif self.curr_state[0].y == self.curr_state[1].y-1 :
-                if self.puzzle[self.curr_state[0].x,self.curr_state[0].y+2] != 'X' and self.puzzle[self.curr_state[1].x, self.curr_state[1].y+1] != 'X' :
+                if self.curr_state[0].y+2 < self.YSIZE and self.curr_state[1].y+1 < self.YSIZE and self.puzzle[self.curr_state[0].x,self.curr_state[0].y+2] != 'X' and self.puzzle[self.curr_state[1].x, self.curr_state[1].y+1] != 'X' :
                     return True
                 else:
+                    return False
+        else:
+            return False
+
+    
+    '''
+        check if the block is horizontal and can move to left
+    '''
+    def h_left_movable(self):
+        if self.is_vertical == False:
+            if self.curr_state[0].x == self.curr_state[1].x-1: # means y coordinates are constant
+                if self.curr_state[0].y-1 >= 0 and self.curr_state[1].y-1 >= 0 and self.puzzle[self.curr_state[0].x,self.curr_state[0].y-1] != 'X' and self.puzzle[self.curr_state[1].x,self.curr_state[1].y-1] != 'X' :
+                    return True
+                else :
+                    return False
+            
+            elif self.curr_state[0].y == self.curr_state[1].y-1 : # means x coordinates are constant
+                if self.curr_state[0].y-1 >= 0 and self.curr_state[1].y-2 >= 0 and self.puzzle[self.curr_state[0].x,self.curr_state[0].y-1] != 'X' and self.puzzle[self.curr_state[1].x,self.curr_state[1].y-2] != 'X' :
+                    return True
+                else : 
                     return False
         else:
             return False
