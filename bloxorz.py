@@ -179,6 +179,7 @@ class Bloxorz:
     '''
     def move_right(self): 
 
+        self.update_b1_b2() # update relative coordinates of blocks
         if self.is_vertical :  # block is vertical
             if self.v_right_movable:
                 #change 'O' and 'S' 
@@ -192,6 +193,30 @@ class Bloxorz:
                 pass
         else : # block is horizontal 
             if self.h_right_movable:
+                #2 horizontal options -> x's are constant || y's are constant 
+                if self.curr_state[0].y == self.curr_state[1].y :
+                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
+                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
+                    #update current state
+                    self.curr_state[0].y+=1 
+                    self.curr_state[1].y+=1
+                    # update puzzle coordinates
+                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                
+                 # no need to mention but this time x's are constant, so a simple else would do the job.
+                 #for the sake of simplicity, I'll put an elif to state the condition 
+                 elif self.curr_state[0].x == self.curr_state[1].x : 
+                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
+                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
+                    #update current state
+                    self.curr_state[0].y+=2
+                    self.curr_state[1].y+=1
+                    #update puzzle coordinates
+                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                      
+
 
             else:
                 print("Block can't move to right")
