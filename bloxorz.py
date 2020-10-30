@@ -174,8 +174,6 @@ class Bloxorz:
     
     '''
         function to move right 
-        Two possible states for moving the blocks:
-        right-left
     '''
     def move_right(self): 
 
@@ -270,7 +268,45 @@ class Bloxorz:
         self.update_b1_b2() 
 
 
-    #def move_up(self): 
+    def move_up(self): 
+        
+        if self.is_vertical():
+            if self.v_up_movable():
+                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
+                #update current state 
+                self.curr_state[0].x-=1
+                self.curr_state[1].x-=2
+                #update puzzle coordinates
+                self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
+                self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+            else:
+                print("Block can't move upwards")
+        else : # blocks are in a horizontal position 
+            if self.h_up_movable() :
+                if self.curr_state[0].y == self.curr_state[1].y :
+                    self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O'
+                    self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'O'
+                    #update current state
+                    self.curr_state[0].x-=1
+                    self.curr_state[1].x-=2
+                    #update puzzle coordinates
+                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+
+                elif self.curr_state[0].x == self.curr_state[1].x:
+                    self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O'
+                    self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'O'
+                    #update current state
+                    self.curr_state[0].x-=1
+                    self.curr_state[1].x-=1
+                    #update puzzle coordinates
+                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+            else :
+                print("Block can't move upwards")
+
+
+
 
 
     #Uniform Search Cost Search algorithm for solving the puzzle
