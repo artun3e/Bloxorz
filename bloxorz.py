@@ -35,6 +35,23 @@ class Bloxorz:
         else:
             return False
 
+    '''
+        purpose is to always fix relative coordinates of b1 && b2
+    '''
+    def update_b1_b2(self) :
+        x1,y1 = self.curr_state[0].x, self.curr_state[0].y
+        x2,y2 = self.curr_state[1].x, self.curr_state[1].y
+
+        if x1+y1 <= x2+y2 :
+            pass
+        else:
+            self.curr_state[0].x = x2 
+            self.curr_state[0].y = y2
+            
+            self.curr_state[1].x = x1
+            self.curr_state[1].y = y1 
+
+
     
     '''
         this function checks if the block is vertical and can move right
@@ -162,9 +179,23 @@ class Bloxorz:
     '''
     def move_right(self): 
 
-        if self.is_vertical :  # 
+        if self.is_vertical :  # block is vertical
+            if self.v_right_movable:
+                #change 'O' and 'S' 
+                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
+                self.curr_state[0].y+=1 # update current state for block 1
+                self.curr_state[1].y+=2 # update current state for block 2
+                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'S'
+                self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'S'
+            else:
+                print("Block can't move to right")
+                pass
+        else : # block is horizontal 
+            if self.h_right_movable:
 
-        else :
+            else:
+                print("Block can't move to right")
+                pass
 
 
 
