@@ -204,7 +204,7 @@ class Bloxorz:
                 
                  # no need to mention but this time x's are constant, so a simple else would do the job.
                  #for the sake of simplicity, I'll put an elif to state the condition 
-                 elif self.curr_state[0].x == self.curr_state[1].x : 
+                elif self.curr_state[0].x == self.curr_state[1].x : 
                     self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
                     self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
                     #update current state
@@ -250,7 +250,7 @@ class Bloxorz:
                 
                  # no need to mention but this time x's are constant, so a simple else would do the job.
                  #for the sake of simplicity, I'll put an elif to state the condition 
-                 elif self.curr_state[0].x == self.curr_state[1].x : 
+                elif self.curr_state[0].x == self.curr_state[1].x : 
                     self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
                     self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
                     #update current state
