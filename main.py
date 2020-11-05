@@ -25,9 +25,14 @@ def main() :
     #puzzle,goal_state,curr_state
     
     Game = Bloxorz(puzzle,goal_state,current_state)
-    Game.move_down()
+    Game.move_up()
     print(Game.curr_state[0].x,Game.curr_state[0].y)
     print(Game.curr_state[1].x,Game.curr_state[1].y)
+    new_puzzle = Game.puzzle
+    for row in new_puzzle : 
+        print(row)
+
+
 
 if __name__ == "__main__" : 
     main()
