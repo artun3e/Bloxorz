@@ -10,14 +10,11 @@ class Bloxorz:
 
     #Puzzle indicates the matrix
     #Block intdicates the moving object
-    #init_state represents the inital state -> coordinate wise
     #goal_state represents the success/goal state -> coordinate wise
-    def __init__(self,puzzle,init_state,goal_state,curr_state,position):
+    def __init__(self,puzzle,goal_state,curr_state):
         self.puzzle = puzzle
-        self.init_state = init_state
         self.curr_state = curr_state
         self.goal_state = goal_state
-        self.position = position
         self.XSIZE = len(puzzle)
         self.YSIZE =  len(puzzle[0])
 
@@ -181,11 +178,11 @@ class Bloxorz:
         if self.is_vertical() :  # block is vertical
             if self.v_right_movable():
                 #change 'O' and 'S' 
-                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
                 self.curr_state[0].y+=1 # update current state for block 1
                 self.curr_state[1].y+=2 # update current state for block 2
-                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'S'
-                self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'S'
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'S'
+                self.puzzle[self.curr_state[1].x][self.curr_state[1].y] = 'S'
             else:
                 print("Block can't move to right")
                 
@@ -193,26 +190,26 @@ class Bloxorz:
             if self.h_right_movable():
                 #2 horizontal options -> x's are constant || y's are constant 
                 if self.curr_state[0].y == self.curr_state[1].y :
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'O'
                     #update current state
                     self.curr_state[0].y+=1 
                     self.curr_state[1].y+=1
                     # update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
                 
                  # no need to mention but this time x's are constant, so a simple else would do the job.
                  #for the sake of simplicity, I'll put an elif to state the condition 
                 elif self.curr_state[0].x == self.curr_state[1].x : 
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'O'
                     #update current state
                     self.curr_state[0].y+=2
                     self.curr_state[1].y+=1
                     #update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
           
             else:
                 print("Block can't move to right")
@@ -227,11 +224,11 @@ class Bloxorz:
         if self.is_vertical() :  # block is vertical
             if self.v_left_movable():
                 #change 'O' and 'S' 
-                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
                 self.curr_state[0].y-=1 # update current state for block 1 -- notice b1-b2 relatively changed, don't forget to update the relative coordinates, b1 <= b2 always
                 self.curr_state[1].y-=2 # update current state for block 2
-                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'S'
-                self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'S'
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'S'
+                self.puzzle[self.curr_state[1].x][self.curr_state[1].y] = 'S'
             else:
                 print("Block can't move to left")
                 
@@ -239,26 +236,26 @@ class Bloxorz:
             if self.h_left_movable():
                 #2 horizontal options -> x's are constant || y's are constant 
                 if self.curr_state[0].y == self.curr_state[1].y :
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'O'
                     #update current state
                     self.curr_state[0].y-=1 
                     self.curr_state[1].y-=1
                     # update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
                 
                  # no need to mention but this time x's are constant, so a simple else would do the job.
                  #for the sake of simplicity, I'll put an elif to state the condition 
                 elif self.curr_state[0].x == self.curr_state[1].x : 
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'O'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'O'
                     #update current state
                     self.curr_state[0].y-=1
                     self.curr_state[1].y-=2
                     #update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
           
             else:
                 print("Block can't move to left")
@@ -271,36 +268,36 @@ class Bloxorz:
 
         if self.is_vertical():
             if self.v_up_movable():
-                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
                 #update current state 
                 self.curr_state[0].x-=1
                 self.curr_state[1].x-=2
                 #update puzzle coordinates
-                self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
             else:
                 print("Block can't move upwards")
         else : # blocks are in a horizontal position 
             if self.h_up_movable() :
                 if self.curr_state[0].y == self.curr_state[1].y :
-                    self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O'
-                    self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] = 'O'
                     #update current state
                     self.curr_state[0].x-=1
                     self.curr_state[1].x-=2
                     #update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
 
                 elif self.curr_state[0].x == self.curr_state[1].x:
-                    self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O'
-                    self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] = 'O'
                     #update current state
                     self.curr_state[0].x-=1
                     self.curr_state[1].x-=1
                     #update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
             else :
                 print("Block can't move upwards")
 
@@ -312,44 +309,45 @@ class Bloxorz:
 
         if self.is_vertical():
             if self.v_down_movable():
-                self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O' # no need to update self[1].x since they are equal
                 #update current state 
                 self.curr_state[0].x+=1
                 self.curr_state[1].x+=2
                 #update puzzle coordinates
-                self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
             else:
                 print("Block can't move downwards")
         else : # blocks are in a horizontal position 
             if self.h_down_movable():
                 if self.curr_state[0].y == self.curr_state[1].y :
-                    self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O'
-                    self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] = 'O'
                     #update current state
                     self.curr_state[0].x+=1
                     self.curr_state[1].x+=2
                     #update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
 
                 elif self.curr_state[0].x == self.curr_state[1].x:
-                    self.puzzle[self.curr_state[0].x,self.curr_state[0].y] = 'O'
-                    self.puzzle[self.curr_state[1].x,self.curr_state[1].y] = 'O'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] = 'O'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] = 'O'
                     #update current state
                     self.curr_state[0].x+=1
                     self.curr_state[1].x+=1
                     #update puzzle coordinates
-                    self.puzzle[self.curr_state[0].x, self.curr_state[0].y] == 'S'
-                    self.puzzle[self.curr_state[1].x, self.curr_state[1].y] == 'S'
+                    self.puzzle[self.curr_state[0].x][self.curr_state[0].y] == 'S'
+                    self.puzzle[self.curr_state[1].x][self.curr_state[1].y] == 'S'
             else :
                 print("Block can't move downwards")
 
         #update relative coordinates of blocks. --NEEDED END OF EVERY MOVEMENT FUNCTION!!!!
         self.update_b1_b2() 
 
-        
+ 
 
+    
     #Uniform Search Cost Search algorithm for solving the puzzle
     '''
     def UCS():
