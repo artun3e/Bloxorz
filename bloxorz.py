@@ -11,8 +11,9 @@ class Bloxorz:
     #Puzzle indicates the matrix
     #Block intdicates the moving object
     #goal_state represents the success/goal state -> coordinate wise
-    def __init__(self,puzzle,goal_state,curr_state):
+    def __init__(self,puzzle,initial_state,goal_state,curr_state):
         self.puzzle = puzzle
+        self.initial_state = initial_state
         self.curr_state = curr_state
         self.goal_state = goal_state
         self.XSIZE = len(puzzle)
@@ -349,10 +350,10 @@ class Bloxorz:
 
     
     #Uniform Search Cost Search algorithm for solving the puzzle
+    def UCS(self):
+        
+    
     '''
-    def UCS():
-        pass  #TODO
-
     def A_Star():
         pass  #TODO
     '''

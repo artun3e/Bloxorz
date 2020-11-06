@@ -23,8 +23,8 @@ def main() :
                 goal_state.append(coordinate(i,j))
 
     #puzzle,goal_state,curr_state
-    
-    Game = Bloxorz(puzzle,goal_state,current_state)
+    initial_state = current_state # beginning current state = initial state
+    Game = Bloxorz(puzzle,initial_state,goal_state,current_state)
     Game.move_up()
     print(Game.curr_state[0].x,Game.curr_state[0].y)
     print(Game.curr_state[1].x,Game.curr_state[1].y)
